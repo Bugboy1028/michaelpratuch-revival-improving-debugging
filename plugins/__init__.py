@@ -1,5 +1,4 @@
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
+"""
 Isidore - Python IRC Bot
 
 Copyright (C) 2010 Sebastian Meyer (s.meyer@drachenjaeger.eu)
@@ -13,9 +12,8 @@ WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
 PARTICULAR PURPOSE. See the GNU General Public License for more details.
 
 You should have received a copy of the GNU General Public License along with this 
-program; if not, see <http://www.gnu.org/licenses/
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+program; if not, see <http://www.gnu.org/licenses/>
+"""
 
 import os
 import string
@@ -48,7 +46,20 @@ def dbaccess(con = None):
         database_lock.release()
 
 def parsing_messageline(line):
-    """ Parsing incoming lines for message-data"""
+    """This parses a line into a message for the plugins
+          message = a directory which has following keys:
+          message["time"] - System time of the message
+          message["sender"] - nickname which send the message
+          message["shost"] - the senders host
+          message["type"] - type of he message
+          message["receiver"] - the receiver of the message
+                                #room or user
+          message["text"] - the message's text
+          
+          The bot can check if somebody is identified vie NickServ via
+          a whois-query. then ["type"] is "WHOISRESP" and ["user"] = the
+          identified user
+          """
     try:
         message = None
         if len(line) >= 2 and line[0] == ":" and "!" in line.split()[0]:
@@ -59,7 +70,7 @@ def parsing_messageline(line):
             message["shost"] = string.split(line[string.index(line, "!") + 1:])[0]
             message["type"] = string.split(line)[1]
             if len(line) == 2:
-                message["receiver"] == ""
+                message["receiver"] = ""
             elif len(line) > 2:
                 message["receiver"] = string.split(line)[2]
             if message["type"] == "MODE":
@@ -83,7 +94,7 @@ def parsing_messageline(line):
     except:
         fout = open("mess_error.txt", "a")
         fout.write("===================\n")
-        fout.write("Fehler zu schreiben: " + line + "\n")
+        fout.write("Failed to write: " + line + "\n")
         traceback.print_exc(file=fout)
         fout.close()
         raise

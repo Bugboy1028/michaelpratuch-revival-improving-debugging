@@ -1,5 +1,4 @@
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
+"""
 Isidore - Python IRC Bot
 
 Copyright (C) 2010 Sebastian Meyer (s.meyer@drachenjaeger.eu)
@@ -13,9 +12,8 @@ WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
 PARTICULAR PURPOSE. See the GNU General Public License for more details.
 
 You should have received a copy of the GNU General Public License along with this 
-program; if not, see <http://www.gnu.org/licenses/
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+program; if not, see <http://www.gnu.org/licenses/>
+"""
 
 import socket
 import thread
@@ -38,7 +36,7 @@ timeout = 160
 pingtime = 100
 lastping = 0
 
-
+irc = None
 orignick = nick
 
 #queue for data to send
@@ -77,7 +75,6 @@ def send_data_to_socket():
                 del __data_to_send[0]
                 send_queue_lock.release()
                 send_socket_lock.acquire()
-                # print "SENDE: " + tosend
                 irc.send(tosend + "\r\n")
                 send_socket_lock.release()
                 time.sleep(0.7)
@@ -112,8 +109,6 @@ def parseIncomingData(linein):
         #Must response to the PING afap
         #using the socket dirctly, so i need to lock it
         global lastping
-        diff = time.time() - lastping
-        print "PING empfangen!, Vergangen: " + str(diff)
         lastping = time.time()
         send_socket_lock.acquire()
         irc.send("PONG" + line[4:]+"\r\n")

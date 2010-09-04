@@ -1,5 +1,4 @@
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
+"""
 Isidore - Python IRC Bot
 
 Copyright (C) 2010 Sebastian Meyer (s.meyer@drachenjaeger.eu)
@@ -13,9 +12,8 @@ WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
 PARTICULAR PURPOSE. See the GNU General Public License for more details.
 
 You should have received a copy of the GNU General Public License along with this 
-program; if not, see <http://www.gnu.org/licenses/
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+program; if not, see <http://www.gnu.org/licenses/>
+"""
 
 import string
 import urllib

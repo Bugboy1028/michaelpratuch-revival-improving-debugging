@@ -1,5 +1,4 @@
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
+"""
 Isidore - Python IRC Bot
 
 Copyright (C) 2010 Sebastian Meyer (s.meyer@drachenjaeger.eu)
@@ -13,9 +12,8 @@ WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
 PARTICULAR PURPOSE. See the GNU General Public License for more details.
 
 You should have received a copy of the GNU General Public License along with this 
-program; if not, see <http://www.gnu.org/licenses/
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+program; if not, see <http://www.gnu.org/licenses/>
+"""
 
 import string
 import random
@@ -125,7 +123,7 @@ def answer(message, sendMessage, cursor, response):
         if len(result) == 0:
             sendMessage("QUIZ: Sorry, there is no active Question",
                         response)
-            sendmessage("QUIZ: Please try <!QUIZ QUESTION> or <!QUIZ HELP>",
+            sendMessage("QUIZ: Please try <!QUIZ QUESTION> or <!QUIZ HELP>",
                         response)
         else:
             answerstart = string.index(message["text"], " ", 7)
@@ -146,8 +144,8 @@ def answer(message, sendMessage, cursor, response):
                     sendMessage(message["sender"] + ": Yeah, that's right. " + \
                             "Congratulations!", response)
                     if len(string.split(result[0][0], "$$$")) > 1:
-                           fullanswer = string.split(result[0][0], "$$$")[1]
-                           sendMessage("QUIZ: Explained answer: " + fullanswer, response)
+                        fullanswer = string.split(result[0][0], "$$$")[1]
+                        sendMessage("QUIZ: Explained answer: " + fullanswer, response)
                     incplayerpoints(message, cursor)
                     activateNextQuestion(message, sendMessage, cursor, response)
                     question(message, sendMessage, cursor, response)
