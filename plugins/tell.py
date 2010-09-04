@@ -79,9 +79,14 @@ def checkForMessages(receiver, sendMessage, dbaccess):
                         receiver)
         con.close()
         dbaccess("release")
-    except Exception:
-        dbaccess("release")
-        raise
+    except Exception, e:
+        if "no such table" in str(e):
+            createTellTable(cursor)
+            dbaccess("release")
+            checkForMessages(receiver, sendMessage, dbaccess)
+        else:
+            dbaccess("release")
+            raise
 
 
 def incomingWhois(message, sendMessage, dbaccess):
