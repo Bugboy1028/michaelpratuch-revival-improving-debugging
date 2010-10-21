@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+
 """
 Isidore - Python IRC Bot
 

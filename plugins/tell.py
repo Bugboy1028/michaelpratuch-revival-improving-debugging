@@ -32,7 +32,6 @@ def start():
 def tellparser(message, sendMessage, dbaccess):
     # first looking for a whois answer
     if message["type"] == "WHOISRESP":
-        print "WHOIS KOMMT REIN!"
         incomingWhois(message, sendMessage, dbaccess)
     elif message["type"] == "NICK":
         checkForMessages(message["text"], sendMessage, dbaccess)
@@ -74,7 +73,7 @@ def checkForMessages(receiver, sendMessage, dbaccess):
                                "WHERE receiver = ? AND read = 'False'", \
                                (receiver,)).fetchall()[0][0]
         if count > 0:
-            sendMessage("Hi " + receiver + ". I have some new mesasges " + \
+            sendMessage("Hi " + receiver + ". I have some new messages " + \
                         "for you. Please query me with !READ to read them.",\
                         receiver)
         con.close()

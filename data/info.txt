@@ -1,0 +1,7 @@
+
+
+Information about the data-directory
+====================================
+
+The bot will save the database in this directory.
+Be shure it exists.
