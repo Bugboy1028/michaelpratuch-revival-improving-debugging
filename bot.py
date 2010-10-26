@@ -156,7 +156,7 @@ def pingserver():
             irc.send("PING myself\r\n")
             send_socket_lock.release()
         except Exception, e:
-            sys.stderr.write(datetime.datetime.now() + '==> Error while pinging the server (just an info)\r\n')
+            sys.stderr.write(str(datetime.datetime.now()) + '==> Error while pinging the server (just an info)\r\n')
             sys.stderr.write(str(e) + "\r\n")
             traceback.print_exc(file=sys.stderr)
         
