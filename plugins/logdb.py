@@ -63,10 +63,7 @@ def logger(message, sendMessage, dbaccess):
     
 
 def lastseen(cursor, message, sendMessage):
-    if message["receiver"][0] == "#":
-        response = message["receiver"]
-    else:
-        response = message["sender"]
+    response = message["reply"]
     if len(string.split(message["text"], " ")) is not 2:
         sendMessage("<Syntax Error>, try: !SEEN <Nick>", response)
     else:

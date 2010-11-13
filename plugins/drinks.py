@@ -46,10 +46,7 @@ def drink_parser(message, sendMessage, dbaccess):
         elif text[0] == "!":
             command = string.split(text, " ")[0]
             if string.lower(command[1:]) in drinks:
-                if message["receiver"][0] == "#":
-                    response = message["receiver"]
-                else:
-                    response = message["sender"]
+                response = message['reply']
                 bringdrink(command[1:], message["sender"],\
                            text, response, sendMessage)
 

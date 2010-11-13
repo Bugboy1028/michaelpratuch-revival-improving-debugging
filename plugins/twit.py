@@ -99,6 +99,7 @@ def getTweets(allover=False):
     urlstring = twitterurl+urloptions
     if allover == False:
         urlstring = urlstring + "&since_id="+str(maxid)
+    print "Getting Tweets from URL:" + urlstring
     u = urllib.urlopen(urlstring)
     j = json.load(u)
     tweets = j["results"]

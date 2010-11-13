@@ -75,10 +75,7 @@ def sendHelp(message, sendMessage):
     
     
 def sendTime(message, sendMessage):
-    if message["receiver"][0] == "#":
-        response = message["receiver"]
-    else:
-        response = message["sender"]
+    response = message["reply"]
     timestring = str(datetime.datetime.now())
     sendMessage("My time is: " + timestring[:19], response)
 

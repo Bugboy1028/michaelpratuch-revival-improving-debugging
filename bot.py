@@ -26,6 +26,12 @@ import threading
 import traceback
 import datetime
 
+version = {
+           'major': 0,
+           'minor': 0,
+           'subbuild': 5,
+           }
+
 sys.path.append("./plugins")
 
 # default values

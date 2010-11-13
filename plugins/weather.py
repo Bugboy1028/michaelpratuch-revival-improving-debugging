@@ -33,10 +33,7 @@ def weather_parser(message, sendMessage, dbaccess):
                            "about the weather in <CITY>", message["sender"])
             elif string.lower(command) == "!weather" \
                  or string.lower(command) == "!wetter":
-                if message["receiver"][0] == "#":
-                    response = message["receiver"]
-                else:
-                    response = message["sender"]
+                response = message["reply"]
                 sendMessage(message["sender"] + ": <SyntaxError>: " + \
                            "try: !WEATHER <CITY>", response)
         elif string.lower(command) == "!weather" \
@@ -45,10 +42,7 @@ def weather_parser(message, sendMessage, dbaccess):
         
 
 def parseText(message, sendMessage):
-    if message["receiver"][0] == "#":
-        response = message["receiver"]
-    else:
-        response = message["sender"]
+    response = message["reply"]
     village = message["text"][string.index(message["text"], " "):]
     text = getWeather(village)
     sendMessage(message["sender"] + ": " + text, response)

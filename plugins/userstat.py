@@ -30,10 +30,7 @@ def stats_parser(message, sendMessage, dbaccess):
             sendMessage("!STAT <USERNAME>: Show some statistics " + \
                         "for a chat-nickname", message["sender"])
         elif command == "!stat":
-            if message["receiver"][0] == "#":
-                response = message["receiver"]
-            else:
-                response = message["sender"]
+            response = message["reply"]
             if len(string.split(message["text"])) != 2:
                 sendMessage(message["sender"] + ": Syntax Error! " + \
                             "Please try !STAT <USERNAME>", response);

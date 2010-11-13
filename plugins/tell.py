@@ -51,10 +51,7 @@ def tellparser(message, sendMessage, dbaccess):
             sendMessage("!READ [x] sends max. 10 private messages, starting " + \
                         "with message x via query to you", message["sender"])
         elif command in ("!tell", "!read"):
-            if message["receiver"][0] == "#":
-                response = message["receiver"]
-            else:
-                response = message["sender"]
+            response = message["reply"]
             if command == "!tell":
                 if len(string.split(message["text"], " ")) < 3:
                     sendMessage(message["sender"] + ": Wrong Syntax, " + \

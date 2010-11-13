@@ -55,6 +55,9 @@ def parsing_messageline(line):
           message["receiver"] - the receiver of the message
                                 #room or user
           message["text"] - the message's text
+          message["reply"] - Contains the user of the message (on a
+                            query) or the room. Use this to reply
+                            to the user who send a message.
           
           The bot can check if somebody is identified vie NickServ via
           a whois-query. then ["type"] is "WHOISRESP" and ["user"] = the
@@ -79,6 +82,12 @@ def parsing_messageline(line):
                 message["text"] = ""
             else:
                 message["text"] = line[string.index(line, ":", 2) + 1:]
+            # let's find how to reply
+            if len(message["receiver"]) > 1:
+                if message["receiver"][0] == "#":
+                    message["reply"] = message["receiver"]
+                else:
+                    message["reply"] = message["sender"]
             # to be shure that there are not more then one spaces between words
             while "  " in message["text"]:
                 message["text"] = string.replace(message["text"], "  ", " ")
